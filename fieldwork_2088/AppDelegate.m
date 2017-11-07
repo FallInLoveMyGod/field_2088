@@ -57,6 +57,20 @@
     return YES;
 }
 
+//  引导页
+- (void)fitstOpenApp {
+    NSString *lastversion = [[NSUserDefaults standardUserDefaults] objectForKey:App_Last_Version];
+    NSString *currentversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    if ([ConfigFunction xfunc_emptyWithString:lastversion] || ![lastversion isEqualToString:currentversion]) {
+        // 开启引导页
+        [[NSUserDefaults standardUserDefaults] setObject:currentversion forKey:App_Last_Version];
+        self.window.rootViewController = [[StartVC alloc] init];
+    }
+    else {
+        self.window.rootViewController = [[LoginVC alloc] init];
+    }
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -84,19 +98,6 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-//  引导页
-- (void)fitstOpenApp {
-    NSString *lastversion = [[NSUserDefaults standardUserDefaults] objectForKey:App_Last_Version];
-    NSString *currentversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    if ([ConfigFunction xfunc_emptyWithString:lastversion] || ![lastversion isEqualToString:currentversion]) {
-        // 开启引导页
-        [[NSUserDefaults standardUserDefaults] setObject:currentversion forKey:App_Last_Version];
-        self.window.rootViewController = [[StartVC alloc] init];
-    }
-    else {
-        self.window.rootViewController = [[LoginVC alloc] init];
-    }
-}
 
 
 @end

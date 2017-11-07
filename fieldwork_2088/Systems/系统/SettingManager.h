@@ -19,6 +19,14 @@
 
 @property (nonatomic,strong)NSString *lon;     //  纬度
 
+@property (nonatomic,strong)NSString *token;
+
+@property (nonatomic,strong)NSString *userId;
+
+@property (nonatomic,strong)NSString *login_id;
+
+@property (nonatomic,assign)BOOL isLogin;
+
 + (SettingManager *)shareManager;
 
 @end
